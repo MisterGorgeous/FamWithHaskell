@@ -16,6 +16,12 @@ maxmin list2 = let h = head list2
 					 where { t = maxmin (tail list2) ;
 						     t_max = fst t ;
 						     t_min = snd t }
+							 
+maxmin [x]    = (x,x) 
+maxmin (x:xs) = ( if x > xs_max then x else xs_max               
+                 , if x < xs_min then x else xs_min ) 
+				 where (xs_max, xs_min) = maxmin x
+				 
 data Client = GovOrg String
 			| Company String Integer Person String 
 			| Individual Person Gender
@@ -28,6 +34,6 @@ data Gender = Male
 			deriving Show			
 clientName :: Client -> String
 clientName client = case client of
-		   GovOrg name                 -> name
-		   Company name id person resp -> name
-	       Individual (Person fName lName _) _ -> fName ++ " " ++ lName
+		   GovOrg name                       -> name
+		   Company name _ _ _                -> name
+	       Individual (Person fName lName) _ -> fName ++ " " ++ lName
