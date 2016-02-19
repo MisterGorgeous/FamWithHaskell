@@ -22,6 +22,7 @@ value list = let h = (0,0)
 incr :: Client -> (Integer,Integer)
 incr (Individual (Person _ _ Male)) = (1,0)
 incr (Individual (Person _ _ Female)) = (0,1)
-incr (Individual (Person _ _ Unknown)) = (0,0)  	
-
+incr (Individual (Person _ _ Unknown)) = (0,0)  
+	
+(+++) :: (Integer,Integer) -> (Integer,Integer) -> (Integer,Integer) 
 (a,b) +++ (c,d) = (a + c , b + d)				 
